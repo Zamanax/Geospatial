@@ -1,0 +1,131 @@
+```{r}
+library(ggplot2)
+library(dplyr)
+library(sf)
+library(rayshader)
+```
+
+# Make a facet grid map of Chicago
+
+```{r}
+# Load the data
+crimes <- read.csv("./Gun_Crimes_Heat_Map.csv")
+
+# Add a day in year column
+crimes$day_in_year <- as.Date(crimes$Date, format = "%m/%d/%Y") - as.Date(paste0("01/01/", substr(crimes$Date, 7, 10)), format = "%m/%d/%Y")
+
+# Load shapefile
+chicagoshp <- st_read("./Boundaries - City")
+```
+
+```{r}
+# Make a facet grid of different maps over Chicago using the shapefile in "Boundaries - City"
+ggplot(chicagoshp) +
+    geom_sf() +
+    geom_point(data = crimes, aes(x=Longitude, y=Latitude, fill=Primary.Type)) +
+    facet_wrap(~Year) +
+    theme_void() +
+    theme(legend.position = "none") +
+    labs(title = "Gun Crimes in Chicago", x = "Longitude", y = "Latitude")
+```
+
+# Make a lolipop plot of the number of gun crimes per year
+
+```{r}
+# Make a lolipop plot of the number of gun crimes per year using a 3d ggplot scatter with x and y coordinates and z being the date only for sexual assaults
+
+ggplot(crimes, aes(x=Longitude, y=Latitude, z=as.Date(Date))) +
+    geom_point(aes(color=Primary.Type)) +
+    scale_color_manual(values = c("red", "blue", "green", "yellow", "orange", "purple", "black", "pink", "brown", "grey")) +
+    theme_void() +
+    theme(legend.position = "none") +
+    labs(title = "Gun Crimes in Chicago", x = "Longitude", y = "Latitude")
+```
+
+```{r}
+# Make a beautiful graph using rayshader
+
+gg <- ggplot(crimes, aes(x=Longitude, y=Latitude)) +
+    stat_density_2d(aes(fill=day_in_year), geom="polygon",
+    n = 100,bins = 10, contour=TRUE) +
+    facet_wrap(~Year) +
+    scale_fill_viridis_c(option = "A")
+
+plot_gg(gg,multicore=TRUE,width=5,height=5,scale=250)
+```
+
+```{r}
+library(rayshader)
+library(ggplot2)
+library(tidyverse)
+
+gg = ggplot(diamonds, aes(x, depth)) +
+  stat_density_2d(aes(fill = stat(nlevel)), 
+                  geom = "polygon",
+                  n = 100,bins = 10,contour = TRUE) +
+  facet_wrap(clarity~.) +
+  scale_fill_viridis_c(option = "A")
+plot_gg(gg,multicore=TRUE,width=5,height=5,scale=250)
+```
+
+```{r}
+gg
+render_snapshot(gg, width = 5, height = 5, software_render = TRUE)
+```
+
+```{r}
+plot_gg(gg,multicore=TRUE,width=5,height=5,scale=250, raytrace = FALSE)
+```
+
+# LIDAR
+
+```{r}
+# 1. Create a disk radius 10
+library(spatstat)
+disc10 <- disc(10)
+```
+
+```{r}
+# 2. Generate clustered points from a Thomas process
+points <- rThomas(100, 10, 20)
+plot(points)
+```
+
+```{r}
+# 3. Run a quadrat test
+quadrat.test(points, 10, 20)
+```
+
+```{r}
+# 4. Regular points from a Strauss process
+points <- rStrauss(100)
+plot(points)
+```
+
+```{r}
+# 5. Run a quadrat test
+quadrat.test(points, 10, 20)
+```
+
+```{r}
+# 6. Prepare point data (both Poisson and regular)
+points_poisson <- rpoispp(lambda = 500 / area(disc10), win = disc10)
+points_regular <- rStrauss(100)
+```
+
+```{r}
+# 7. Calc nearest-neighbor distances for Poisson point data
+distances_poisson <- nndist(points_poisson)
+plot(distances_poisson)
+```
+
+```{r}
+# 8. Draw a histogram of nearest-neighbor distances
+hist(distances_poisson)
+```
+
+```{r}
+```
+
+```{r}
+```
