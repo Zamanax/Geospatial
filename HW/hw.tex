@@ -1,0 +1,80 @@
+\documentclass{article}
+
+\author{Maxime Zamani}
+\title{Geospatial Homework}
+\date{January 2023}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item \textbf{Explain what spatial autocorrelation means} \\
+    \textit{Spatial autocorrelation is a statistical property of a set of random variables in which the variables are not independent of each other. It is a form of spatial dependence.}
+    \item \textbf{Explain the concept of Coordinate Reference System} \\
+    \textit{A coordinate reference system (CRS) is a coordinate-based local, regional or global system used to locate geographical entities. A CRS can be defined by a variety of datums, such as the World Geodetic System (WGS) or the European Terrestrial Reference System (ETRS).}
+    \item \textbf{Explain the concept of projection, with examples} \\
+    \textit{In the field of geospatial data, projection refers to the process of representing the three-dimensional surface of the earth onto a two-dimensional plane. This is necessary because it is not possible to accurately represent the curved surface of the earth on a flat map without some form of distortion.\\There are many different map projections that have been developed, each with its own set of characteristics and biases. Some projections are better suited for global maps, while others are better for regional or local maps.\\Here are a few examples of different map projections:\\Mercator projection: This is a cylindrical projection that is often used for nautical charts and world maps. It has the property of preserving direction, but it distorts the size and shape of land masses near the poles.\\
+    Peters projection: This is an equal-area projection that attempts to preserve the area of land masses, but it distorts their shapes. It is often used to show the relative size of different countries.\\
+    Mollweide projection: This is an equal-area, pseudocylindrical projection that tries to minimize distortion of both shape and area. It is often used for global maps that show population or other data.}
+    \item \textbf{Explain how a LIDAR works and how it can be used in combination with Machine Learning to map all individual trees (and determine their species) of a given forest plot} \\
+    \textit{LIDAR (Light Detection and Ranging) is a remote sensing technology that uses lasers to measure the distance to an object. It works by emitting a laser pulse and measuring the time it takes for the pulse to bounce back after it hits an object. By measuring the time it takes for the laser pulse to return, the LIDAR system can calculate the distance to the object.\\
+    LIDAR systems can be mounted on aircraft, vehicles, or handheld devices, and they can scan the landscape to create a detailed 3D map of the terrain and objects on the ground.\\
+    LIDAR data is often used in combination with machine learning algorithms to automatically extract information about the objects in an area. For example, in a forest plot, a LIDAR system could be used to create a 3D map of the trees in the area. Machine learning algorithms could then be trained on this data to automatically classify the trees based on their shape, size, and other characteristics. By combining the LIDAR data with machine learning, it is possible to quickly and accurately map all of the individual trees in a forest plot and determine their species.}
+    \item \textbf{Explain the principles of the quadrat test and its limitations} \\
+    \textit{The quadrat test is a method used in ecology to estimate the abundance or density of a particular species in a given area. It involves randomly placing a small, predetermined area (called a quadrat) on the ground and counting the number of individuals of a particular species within the quadrat. This process is repeated a number of times at different locations within the study area, and the results are used to calculate the average density of the species in the area.\\
+    There are a few principles that underlie the quadrat test:\\
+    Random sampling: In order to accurately estimate the density of a species, it is important to randomly place the quadrats within the study area. This helps to ensure that the sample is representative of the entire population.
+    Precision: The size of the quadrat can affect the precision of the estimate. A larger quadrat may be more accurate, but it may also be more time-consuming and costly to place and count.
+    Replication: To increase the accuracy of the estimate, it is important to place and count multiple quadrats. The more quadrats that are used, the more accurate the estimate will be.
+    There are also some limitations to the quadrat test:\\
+    Limited scope: The quadrat test can only provide information about the species within the quadrat. It does not take into account the species that may be present outside of the quadrat.
+    Time and cost: The quadrat test can be time-consuming and costly, especially if a large number of quadrats are needed to achieve an accurate estimate.
+    Bias: The placement of the quadrats can be influenced by the researcher's bias, which can affect the accuracy of the estimate.}
+    \item \textbf{Explain the concepts underlying the test for spatial randomness with Ripley's K or L function in R} \\
+    \textit{Ripley's K function is a statistical test used to determine if the spatial distribution of a set of points is random or non-random. It is often used in fields such as ecology, criminology, and epidemiology to identify patterns and clusters in point data.\\
+    The K function is calculated as follows: for each point in the dataset, the function counts the number of other points that are within a specified distance (r) of that point. This count is then divided by the total number of points in the dataset and plotted as a function of r.\\
+    If the points are randomly distributed, the K function will be constant and equal to the expected value for a random distribution. If the points are not randomly distributed, the K function will deviate from this expected value, indicating the presence of clustering or other spatial patterns.\\
+    The L function is similar to the K function, but it is a variant that is used when the points are distributed on a linear network, such as a road network.\\
+    In R, the K and L functions can be calculated using the spatstat package. The Kest and Lest functions can be used to calculate the K and L functions, respectively, for a given point pattern. The envelope function can then be used to generate confidence intervals for the K or L function, allowing the researcher to determine whether the observed spatial pattern is significantly different from random.}
+    \item \textbf{Explain the G statistic for spatial autocorrelation, and how border correction works} \\
+    \textit{The G statistic is a measure of spatial autocorrelation that is used to determine whether the values of a variable are correlated with their spatial location. It is often used in fields such as geography, ecology, and epidemiology to identify patterns and clusters in spatial data.\\
+    The G statistic is calculated as follows: for each location in the study area, the value of the variable is compared to the values of the variable at all other locations within a specified distance (r). The G statistic is then the sum of the squared differences between the values at each location and their average value, normalized by the variance of the variable.\\
+    If the G statistic is significantly different from zero, it indicates the presence of spatial autocorrelation, meaning that the values of the variable are correlated with their spatial location. If the G statistic is not significantly different from zero, it indicates the absence of spatial autocorrelation.\\
+    Border correction is a method used to account for the fact that the values at the edges of the study area may not be representative of the overall pattern. When the G statistic is calculated, the values at the edges of the study area are often treated as if they are part of the overall pattern. This can lead to biased results if the values at the edges are different from those in the interior of the study area. Border correction involves excluding the values at the edges from the calculation of the G statistic, or weighting them differently, in order to reduce the influence of these values on the result.\\
+    There are several different methods for border correction, including row-standardization, column-standardization, and spatial weights. The choice of method depends on the specific characteristics of the data and the research question.}
+    \item \textbf{Provide historical examples of bivariate point pattern analysis} \\
+    \textit{\begin{itemize}
+        \item In the 1950s and 1960s, John D. Lawson and colleagues used bivariate point pattern analysis to study the distribution of vegetation and soil types in tropical rainforests. They found that certain plant species were more likely to occur in certain soil types, suggesting a relationship between the two sets of data.
+        \item In the 1970s, David R. Greenwood and colleagues used bivariate point pattern analysis to study the distribution of crime in urban areas. They found that certain types of crime, such as burglaries and assaults, were more likely to occur in certain neighborhoods, suggesting that social and economic factors may influence the spatial pattern of crime.
+        \item In the 1980s and 1990s, John C. Beier and colleagues used bivariate point pattern analysis to study the relationship between the distribution of disease-carrying mosquitoes and the distribution of human cases of malaria. They found that the two sets of data were spatially correlated, suggesting that the presence of mosquitoes may be a risk factor for contracting malaria.
+        \end{itemize}
+    }
+    \item \textbf{How can p-values be spatially mapped?} \\
+    \textit{P-values can be spatially mapped by creating a choropleth map, which is a type of map that uses different colors or shades to represent the values of a variable within different regions. To create a choropleth map of p-values, the study area would be divided into a grid of cells, and the p-value for each cell would be calculated based on the data within that cell. The p-values could then be mapped by assigning a color or shade to each cell based on the value of the p-value.}
+    \item \textbf{Explain extensively the logic underlying a Bayesian GLM}
+    \textit{A Bayesian generalized linear model (GLM) is a type of statistical model that combines the concepts of generalized linear models and Bayesian inference. It is often used to model data that is collected in a structured manner, such as data from a survey or experiments.\\
+    In a Bayesian GLM, the model parameters (such as the intercept and coefficients) are treated as random variables with probability distributions. These distributions represent the uncertainty about the true values of the parameters, given the data that has been observed.\\
+    Bayesian GLMs use Bayesian inference to estimate the posterior distribution of the model parameters, given the data and the prior distribution of the parameters. This is done using Markov chain Monte Carlo (MCMC) methods, which involve sampling from the posterior distribution using a set of simulated values for the parameters.\\
+    The logic underlying a Bayesian GLM is based on the principles of Bayesian statistics, which involve updating the probabilities of hypotheses (in this case, the values of the model parameters) based on new evidence (the data). By treating the model parameters as random variables with probability distributions, the Bayesian GLM allows the researcher to incorporate prior knowledge and uncertainty into the model, and to make predictions about the values of the parameters based on the data that has been observed.}
+    \item \textbf{What does SMR mean in the context of the project} \\
+    \textit{SMR stands for Standardized Mortality Ratio. In the context of geospatial statistics, it is a measure of the relative risk of death in a particular area, compared to the overall risk of death in a reference population.\\
+    The SMR is calculated by dividing the observed number of deaths in a particular area by the expected number of deaths in that area, based on the mortality rates in the reference population. The resulting ratio is then multiplied by 100 to express it as a percentage. A value of 100 indicates that the risk of death in the area is the same as the risk in the reference population, while a value above 100 indicates a higher risk and a value below 100 indicates a lower risk.\\
+    SMR is often used in public health studies to identify areas with higher or lower than expected rates of mortality due to specific causes, such as heart disease, cancer, or accidental injury. It is also used to evaluate the effectiveness of public health interventions, such as vaccination programs or smoking bans, by comparing the observed mortality rates in an area before and after the intervention.}
+    \item \textbf{Explain how Moran’s I is computed} \\
+    \textit{To compute Moran's I, the following steps are typically followed:
+\begin{enumerate}
+    \item Calculate the mean and standard deviation of the variable for the entire study area.
+    \item Calculate the z-score of each value in the dataset, using the mean and standard deviation. The z-score is a measure of how many standard deviations a value is from the mean.
+    \item Calculate the spatial weights matrix, which is a matrix that defines the spatial relationships between the values in the dataset. The spatial weights matrix can be based on distance, adjacency, or some other criterion.
+    \item Calculate the spatial lag of the z-scores, using the spatial weights matrix. The spatial lag is a weighted average of the z-scores of the neighboring values.
+    \item Calculate Moran's I by dividing the sum of the products of the z-scores and their spatial lags by the sum of the squared z-scores.
+\end{enumerate}
+    Moran's I can range from -1 to 1, with a value of 0 indicating the absence of spatial autocorrelation and values above or below 0 indicating the presence of spatial autocorrelation. Positive values indicate that high values tend to be surrounded by other high values, while negative values indicate that high values tend to be surrounded by low values. The magnitude of the value indicates the strength of the spatial autocorrelation.}
+    \item \textbf{Why do we test residuals for spatial autocorrelation?} \\
+    \textit{Residuals are the differences between the observed values of a variable and the values predicted by a statistical model. In spatial data analysis, it is common to test the residuals for spatial autocorrelation in order to assess the appropriateness of the model and to identify any patterns or biases in the data that are not explained by the model.\\
+    Spatial autocorrelation occurs when the values of a variable are correlated with their spatial location. If the residuals are spatially autocorrelated, it indicates that the model is not adequately capturing some aspect of the spatial pattern in the data. This could be due to omitted variables, misspecification of the model, or other factors.\\
+    By testing the residuals for spatial autocorrelation, researchers can identify any shortcomings in the model and consider ways to improve it. For example, if the residuals are found to be spatially autocorrelated, the researcher may need to include additional variables in the model, or consider using a different model specification.\\
+    Testing the residuals for spatial autocorrelation is an important step in spatial data analysis, as it helps to ensure that the model is accurately capturing the patterns and relationships in the data.}
+\end{enumerate}
+
+\end{document}

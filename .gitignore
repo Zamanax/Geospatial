@@ -3,3 +3,8 @@
 .vscode/*
 .RData
 .Rhistory
+HW/hw.aux
+HW/hw.fls
+HW/hw.log
+HW/hw.fdb_latexmk
+HW/hw.synctex.gz
